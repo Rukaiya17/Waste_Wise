@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.env
+venv/
+env/
+.env*
+.Python
+
+# VSCode
+.vscode/
+
+# Byte-compiled / distribution
+build/
+dist/
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# OneDrive
+~$*
+
+# PyCharm
+.idea/
+
+# Logs
+*.log
+
+# virtualenv
+pip-log.txt
+
+# node modules (if any)
+node_modules/

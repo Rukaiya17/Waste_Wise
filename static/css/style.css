@@ -1,0 +1,202 @@
+/* Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', 'Roboto', sans-serif;
+}
+
+/* Background Gradient with light green to soft blue */
+body {
+    background: linear-gradient(to right, hsl(142, 76%, 95%), hsl(204, 69%, 92%));
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background-color: hsl(var(--primary));
+    padding: 20px 40px;
+    text-align: center;
+    color: hsl(var(--primary-foreground));
+}
+
+/* Logo */
+.logo h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.logo p {
+    font-size: 1.2rem;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: hsl(var(--card) / 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Headings */
+.container h2 {
+    font-size: 2rem;
+    color: hsl(var(--primary));
+    margin-bottom: 25px;
+}
+
+/* Waste Options Grid */
+.waste-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Waste Category Card */
+.category-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsl(var(--secondary) / 0.4);
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    width: 100px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-option:hover {
+    background-color: hsl(var(--secondary) / 0.6);
+}
+
+.category-option input[type="radio"] {
+    display: none;
+}
+
+.category-option .category-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.category-option p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: hsl(142, 76%, 30%);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 0.9rem;
+}
+
+/* Info Section */
+.info-section {
+    margin-top: 40px;
+}
+
+.info-box {
+    background-color: #f0fdf4;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.info-box h2 {
+    color: hsl(var(--primary));
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.green-highlight {
+    background-color: #e6ffed;
+}
+
+/* Tailwind Layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 90 30% 98%;
+        --foreground: 110 10% 20%;
+        --card: 0 0% 100%;
+        --card-foreground: 110 10% 20%;
+        --primary: 142 76% 36%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 204 69% 76%;
+        --secondary-foreground: 210 40% 25%;
+    }
+
+    .dark {
+        --background: 110 15% 10%;
+        --foreground: 110 10% 95%;
+        --card: 110 15% 15%;
+        --card-foreground: 110 10% 95%;
+    }
+}
+
+@layer components {
+    .eco-card {
+        @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100;
+    }
+
+    .eco-stat {
+        @apply text-4xl font-bold text-green-600;
+    }
+
+    .eco-progress-ring circle {
+        @apply transition-all duration-1000 ease-in-out;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-gradient-green {
+        @apply bg-gradient-to-br from-green-500 to-blue-400 bg-clip-text text-transparent;
+    }
+}

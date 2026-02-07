@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reuse Suggestions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-green-50">
+
+    <div class="container mx-auto p-6">
+
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
+            Reuse Suggestions for <span class="capitalize">{{ waste_type }}</span>
+        </h1>
+
+        <p class="text-lg text-center text-gray-600 mb-8">
+            Here are some creative and eco-friendly ways to reuse your <span class="capitalize">{{ waste_type }}</span> waste:
+        </p>
+
+        <!-- Waste Facts Section -->
+        {% if waste_type == 'plastic' %}
+            <div class="bg-white border-l-4 border-green-500 p-4 mb-6 rounded-md shadow-sm">
+                <h2 class="text-xl font-semibold text-green-700 mb-2">Plastic Facts</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Plastic is a non-biodegradable material.</li>
+                    <li>It belongs to the dry waste category.</li>
+                    <li>Reusing plastic helps reduce marine pollution.</li>
+                    <li>It can be turned into eco-bricks, planters, or craft items.</li>
+                </ul>
+            </div>
+        {% elif waste_type == 'paper' %}
+            <div class="bg-white border-l-4 border-blue-500 p-4 mb-6 rounded-md shadow-sm">
+                <h2 class="text-xl font-semibold text-blue-700 mb-2">Paper Facts</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Paper is dry waste and is biodegradable.</li>
+                    <li>It can be recycled up to 6 times.</li>
+                    <li>Reused as packaging, craft paper, or compost.</li>
+                </ul>
+            </div>
+        {% elif waste_type == 'glass' %}
+            <div class="bg-white border-l-4 border-purple-500 p-4 mb-6 rounded-md shadow-sm">
+                <h2 class="text-xl font-semibold text-purple-700 mb-2">Glass Facts</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Glass is 100% recyclable without loss of quality.</li>
+                    <li>It is considered dry waste.</li>
+                    <li>Can be reused as containers, decor, or mosaics.</li>
+                </ul>
+            </div>
+        {% elif waste_type == 'metal' %}
+            <div class="bg-white border-l-4 border-yellow-500 p-4 mb-6 rounded-md shadow-sm">
+                <h2 class="text-xl font-semibold text-yellow-700 mb-2">Metal Facts</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Metals are dry waste and highly recyclable.</li>
+                    <li>Commonly reused as scrap or for DIY crafts.</li>
+                    <li>Recycling metal saves natural ore and energy.</li>
+                </ul>
+            </div>
+        {% elif waste_type == 'organic' %}
+            <div class="bg-white border-l-4 border-orange-500 p-4 mb-6 rounded-md shadow-sm">
+                <h2 class="text-xl font-semibold text-orange-700 mb-2">Organic Waste Facts</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Organic waste is biodegradable and wet waste.</li>
+                    <li>Includes food scraps, leaves, peels, etc.</li>
+                    <li>Perfect for composting and enriching soil.</li>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Suggestions Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for suggestion, link, more_info in suggestions %}
+                <div class="card bg-white p-4 rounded-lg shadow-md relative">
+                    <p class="text-gray-800 text-lg font-medium mb-2">{{ suggestion }}</p>
+
+                    <button 
+                        onclick="this.nextElementSibling.classList.toggle('hidden')" 
+                        class="text-sm text-green-600 hover:underline mb-2 focus:outline-none">
+                        Learn More
+                    </button>
+
+                    <div class="hidden text-sm text-gray-600 mb-3">
+                        {{ more_info }}
+                    </div>
+
+                    <a href="{{ link }}" target="_blank" class="text-green-500 font-semibold hover:underline text-sm absolute bottom-3">External Link →</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="/" class="bg-green-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">← Back to Homepage</a>
+        </div>
+    </div>
+
+</body>
+</html>

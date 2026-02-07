@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Waste Segregation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header img {
+            width: 130px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .waste-form {
+            margin-top: 20px;
+        }
+
+        .waste-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .category-option {
+            border: 2px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-option input[type="radio"] {
+            display: none;
+        }
+
+        .category-option input[type="radio"]:checked + .category-icon,
+        .category-option input[type="radio"]:checked ~ p {
+            color: #007B5E;
+            font-weight: bold;
+        }
+
+        .category-option:has(input[type="radio"]:checked) {
+            border-color: #007B5E;
+            background-color: #e9f9f3;
+            box-shadow: 0 0 10px rgba(0, 123, 94, 0.2);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007B5E;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #005c47;
+        }
+
+        .info-section {
+            margin-top: 40px;
+        }
+
+        .info-box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .green-highlight {
+            background-color: #e6f5ec;
+            border-left: 5px solid #007B5E;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f0f0f0;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="{{ url_for('static', filename='images/wastewise.png') }}" alt="WasteWise Logo">
+        <h1>WasteWise</h1>
+        <p>Discover creative ways to reuse waste!</p>
+    </header>
+
+    <div class="container">
+        <h2>Select Waste Type for Reuse Suggestions</h2>
+        <form action="/suggestions" method="POST" class="waste-form">
+            <div class="waste-options">
+                <label class="category-option" title="Plastic bottles, bags, containers">
+                    <input type="radio" name="waste_type" value="plastic" required>
+                    <div class="category-icon">🧴</div>
+                    <p>Plastic</p>
+                </label>
+                <label class="category-option" title="Old newspapers, magazines, cardboard">
+                    <input type="radio" name="waste_type" value="paper">
+                    <div class="category-icon">📄</div>
+                    <p>Paper</p>
+                </label>
+                <label class="category-option" title="Tin cans, aluminum foil, scrap metal">
+                    <input type="radio" name="waste_type" value="metal">
+                    <div class="category-icon">🪙</div>
+                    <p>Metal</p>
+                </label>
+                <label class="category-option" title="Glass bottles, jars, containers">
+                    <input type="radio" name="waste_type" value="glass">
+                    <div class="category-icon">🍶</div>
+                    <p>Glass</p>
+                </label>
+                <label class="category-option" title="Food scraps, garden waste">
+                    <input type="radio" name="waste_type" value="organic">
+                    <div class="category-icon">🍃</div>
+                    <p>Organic</p>
+                </label>
+            </div>
+            <button type="submit" class="submit-btn">Get Reuse Ideas</button>
+        </form>
+    </div>
+
+    <!-- Informational Section -->
+    <div class="container info-section">
+        <div class="info-box">
+            <h2>Why Smart Waste Management Matters</h2>
+            <p>
+                Efficient waste management reduces environmental damage, saves energy, and promotes a cleaner future. Proper segregation improves recycling outcomes and lowers landfill burden.
+            </p>
+            <ul>
+                <li><strong>Plastic:</strong> Non-biodegradable; reuse or recycle to avoid pollution.</li>
+                <li><strong>Organic:</strong> Biodegradable; great for composting.</li>
+                <li><strong>Paper:</strong> Recyclable if dry and clean.</li>
+                <li><strong>Glass:</strong> Recyclable and doesn’t degrade in quality.</li>
+                <li><strong>Metal:</strong> Recyclable and energy-efficient to reuse.</li>
+            </ul>
+        </div>
+
+        <div class="info-box green-highlight">
+            <h2>Did You Know?</h2>
+            <ul>
+                <li>Recycling 1 plastic bottle saves enough energy to power a light bulb for 3 hours.</li>
+                <li>Organic waste makes up over 50% of household garbage and can be composted.</li>
+                <li>Aluminum cans are 100% recyclable and can be reused endlessly.</li>
+                <li>Plastic takes over 400 years to break down in landfills.</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h2>Impact of Proper Waste Segregation</h2>
+            <ul>
+                <li>1 ton of recycled paper saves 17 trees and 7,000 gallons of water.</li>
+                <li>Recycling metal saves up to 95% of the energy used for producing new metal.</li>
+                <li>Proper sorting reduces landfill use by over 60%.</li>
+            </ul>
+        </div>
+
+        <div class="info-box green-highlight">
+            <h2>What People Say</h2>
+            <p>“Waste isn't waste until we waste it.” — Will.i.am</p>
+            <p>“The greatest threat to our planet is the belief that someone else will save it.” — Robert Swan</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Smart Waste Segregation. All rights reserved.</p>
+    </footer>
+</body>
+</html>
